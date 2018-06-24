@@ -4,19 +4,18 @@
 
 #define N 10
 
+#define SWAP(x,y,T) do {T swap = x; x = y; y = swap;} while (0)
+
 void insertion(float *x, int n)
 {
     int i,j;
-    float swp;
     for(i=1;i<n;i++)
     {
         j=i;
         // Swap all elements up to i until they are sorted.
         while(j>0 && x[j-1] > x[j])
         {
-            swp = x[j];
-            x[j] = x[j-1];
-            x[j-1] = swp;
+            SWAP(x[j], x[j-1], float);
             j--;
         }
     }
@@ -25,7 +24,7 @@ void insertion(float *x, int n)
 void quicksort(float *x, int n)
 {
     if(n > 1) {
-        float swp, pivot=x[0];
+        float pivot=x[0];
         int l = 1; // left index
         int r = n-1; // right index
         while(l < r) // work l and r towards each other
@@ -34,15 +33,11 @@ void quicksort(float *x, int n)
             else if(x[r] >= pivot) r--;
             else // if the left element is above pivot and the right is below, swap them
             {
-                swp = x[l];
-                x[l] = x[r];
-                x[r] = swp;
+                SWAP(x[l], x[r], float);
             }
         }
         l -= 1;
-        swp = x[0];
-        x[0] = x[l];
-        x[l] = swp;
+        SWAP(x[l], x[0], float);
         quicksort(x, l); // recurse on the elements to the left of l
         quicksort(x+r, n-r); // recurse on the elements to the right of r
     }
