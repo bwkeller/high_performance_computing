@@ -22,6 +22,7 @@ float estimate_pi(long n)
 
 int main(int argc, char * argv[])
 {
+    srand(time(NULL));
     if (argc < 1)
     {
         printf("Please input number of sample points\n");
@@ -29,5 +30,4 @@ int main(int argc, char * argv[])
     }
     long n = atoi(argv[1]);
     printf("Pi estimate: %7.6f\n", estimate_pi(n));
-    srand(time(NULL));
 }
