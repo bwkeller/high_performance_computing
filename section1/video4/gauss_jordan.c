@@ -13,13 +13,13 @@ void gauss_jordan(int n, float a[][n])
     int i,j,k,irow,icol,l,ll;
     int ipiv[n], indxr[n], indxc[n];
     float big,dum,pinv;
-    memset(ipiv, 0, sizeof(int)*n);
-    for(i=0; i<n; i++)
+    memset(ipiv, 0, sizeof(int)*n); // zero out pivot vector
+    for(i=0; i<n; i++) // loop over rows
     {
         big = 0.;
-        for(j=0; j<n; j++)
+        for(j=0; j<n; j++) // loop over columns
             if(ipiv[j] != 1)
-                for(k=0;k<n;k++)
+                for(k=0;k<n;k++) // check to see if we swap
                     if((ipiv[k] == 0) && (abs(a[j][k]) >= big))
                     {
                         big = abs(a[j][k]);
@@ -32,13 +32,13 @@ void gauss_jordan(int n, float a[][n])
                 SWAP(a[irow][l],a[icol][l],float);
         indxr[i] = irow;
         indxc[i] = icol;
-        if(a[icol][icol] == 0)
+        if(a[icol][icol] == 0) // Check for singularity
         {
             printf("Singular Matrix!  Cannot invert!\n");
             return;
         }
         pinv =1./a[icol][icol];
-        a[icol][icol] = 1.;
+        a[icol][icol] = 1.; // identity matrix
         for(l=0;l<n;l++)
             a[icol][l] *= pinv;
         for(ll=0;ll<n;ll++)
