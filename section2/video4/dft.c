@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N (2 << 12)
+#define N (2 << 16)
 
 //Store the DFT of f in F, for n points
 void dft(float complex *F, float complex *f, int n)
@@ -76,8 +76,4 @@ int main(int argc, char * argv[])
     float complex *ft_x = malloc(N*sizeof(float complex));
     sinc(x);
     fft(ft_x, x, N, 1);
-    for(int i=0;i<N;i++)
-    {
-        printf("%e %e %e\n", creal(x[i]), creal(ft_x[i]), cimag(ft_x[i]));
-    }
 }
