@@ -44,7 +44,7 @@ int main(int argc, char * argv[])
     int threads=512; 
     int blocks=2048;
     sscanf(argv[1], "%e", &n);
-    n=n-(n%threads*blocks); //get a nice number of points to run on our GPU
+    n=n-((int) n%threads*blocks); //get a nice number of points to run on our GPU
     if (n < threads*blocks) n=threads*blocks; // run at least enough points to use the GPU
     int per_thread = n/(threads*blocks);
     unsigned int *pi; 
